@@ -14,7 +14,7 @@ export default [
                 "id": "lkjhsdlfkg",
                 "user": "Dolly Franklin",
                 "text": "Aliquip id nostrud adipisicing irure. Labore reprehenderit ea ex officia ullamco incididunt consequat elit amet quis commodo. Fugiat amet veniam cillum ut aliquip velit est esse minim fugiat eiusmod sint. Commodo ea in culpa deserunt."
-            },
+            },  
             {
                 "id": "zxcvzcxvzxcv",
                 "user": "Brennan Atkins",

@@ -1,47 +1,51 @@
-import React, {Component} from 'react';
 
-class Article extends Component {
-    constructor (props) {
-        super(props);
+import React, {PureComponent} from 'react'
+import CommentList from './CommentList'
+
+class Article extends PureComponent {
+    constructor(props) {
+        super(props)
+
         this.state = {
-            isOpen: props.defaultOpen
+            count: 0
         }
     }
 
-    componentWillMount() {
-        console.log('mounting');
-    }
 
     render() {
-        const {article} = this.props;
-        const body = this.state.isOpen && <section className="card-text">{article.text}</section>;
+        const {article, isOpen, onButtonClick} = this.props
+        const style = {width: '70%'}
+        const body = isOpen && <section className="card-text">{article.text}</section>
         return (
-            <div className="card mx-auto" style={{width: '70%'}}>
+            <div className="card mx-auto" style = {style}>
                 <div className="card-header">
-                    <h2>
+                    <h2 onClick = {this.incrementCounter}>
                         {article.title}
-                            <button onClick={this.handleClick} className="btn btn-primary btn-lg float-right">
-                                {this.state.isOpen ? 'close' : 'open'}
-                            </button>
+                        <button onClick={onButtonClick} className="btn btn-primary btn-lg float-right">
+                            {isOpen ? 'close' : 'open'}
+                        </button>
                     </h2>
                 </div>
                 <div className="card-body">
                     <h6 className="card-subtitle text-muted">
-                        creation date: {(new Date(article.date)).toDateString()}
+                        creation date: {(new Date(article.date)).toDateString()} clicked {this.state.count}
                     </h6>
                     {body}
                 </div>
+                <CommentList 
+                    comments = {article.comments}
+                    isOpen = {isOpen}
+                    />
             </div>
         )
     }
 
-    handleClick = () => {
+    incrementCounter = () => {
         this.setState({
-            isOpen: !this.state.isOpen
+            count: this.state.count + 1
         })
-      }
+    }
 }
 
 
-
-export default Article;
+export default Article
