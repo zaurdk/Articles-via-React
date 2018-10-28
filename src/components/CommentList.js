@@ -6,7 +6,7 @@ class CommentList extends Component {
         super(props)
 
         this.state = {
-            isOpen: false
+            isOpen: false,
         }
     }
 
@@ -14,25 +14,26 @@ class CommentList extends Component {
         if (nextProps.isOpen !== this.props.isOpen) this.toggleComments();
     }
 
-    render() {
-        
+    render() {        
         if (this.props.comments !== undefined)  {    
         var comms = Object.keys(this.props.comments).map(key => this.props.comments[key]);
-        }
-        
+        }        
         if (comms !== undefined)  { 
             var commentsElements = this.state.isOpen && comms.map((comment) =>
                 <li key = {comment.id}>
                     <Comment comment = {comment}/>
                 </li>
             )
+        var commentCount = Object.keys(this.props.comments).length;
         }
        
-
         return (
             <ul style={{'list-style': 'none'}}>
+                <div className="text-muted">
+                    Comments: {commentCount}
+                </div>
                 {commentsElements}
-            </ul>
+            </ul>           
         )
     }
 
